@@ -42,6 +42,9 @@ conn L2TP-PSK-noNAT
     leftprotoport=17/1701
     right=%any
     rightprotoport=17/%any
+    dpddelay=40
+    dpdtimeout=130
+    dpdaction=clear
 EOF
 
 cat > /etc/ipsec.secrets << EOF
@@ -144,7 +147,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 systemctl restart ipsec.service
 systemctl restart pptpd
 systemctl enable pptpd
-systemctl enable xl2tpd
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
 /usr/sbin/xl2tpd
 
