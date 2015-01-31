@@ -134,7 +134,7 @@ do
     echo 0 > $each/send_redirects
 done
 systemctl restart ipsec.service
-ps -ef | grep 'xl2tpd' || /usr/sbin/xl2tpd
+/usr/sbin/xl2tpd
 systemctl restart pptpd
 EOF
 
